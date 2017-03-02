@@ -22,31 +22,32 @@ Une autre utilisation de la plateforme serait en tant qu'API, c'est-à-dire depu
 #### Must-have
 
 * Authentification
-* Création de sample et catégorisation (chemin, style et tags)
-* Édition des informations d'un sample 
 * Parcours de tous les samples dans une arborescence
 * Recherche d'un sample (par nom, style et tags)
 * Lecture d'un sample
+* Création de sample et catégorisation (chemin, style et tags)
 * Téléchargement d'un sample
-* Gestion des rôles
-    * Un utilisateur invité peut lire et télécharger des samples
-    * Un utilisateur inscrit peut créer des samples, mais pas des dossiers
-    * Un admin peut créer des dossier et transformer un utilisateur inscrit en admin
 
 #### Nice-to-have
 
-* Recadrage temporel d'un sample
+
 * Fournir une API d'utilisation de SampleCenter
     * Une autre application qui a besoin de sample peut intégrer facilement les données de SampleCenter
     * Les données seraient retournées en JSON plutôt qu'en vues HTML
-    * Ne concerne que la recherche et la lecture de samples
+* Gestion des rôles
+    * Un utilisateur invité peut lire et télécharger des samples
+    * Un utilisateur inscrit peut créer des samples, mais pas des dossiers
+    * Un admin peut créer des dossier, des styles et transformer un utilisateur inscrit en admin
+* Recadrage temporel d'un sample
 * Commentaires
 * Like un sample
-* Lister ses likes
+* Page de profil permettant de lister ses samples et ses likes
+* Édition et suppression de ses samples (tous les samples pour les admin)
 * Feed d'activité sur un profil utilisateur
 * système de votes ( + 0 -)
 * Système de privilège aux utilisateurs avec un indice de confiance (pour garantir la bonne structure de l'arborescence)
     * Un utilsateur gagne des points si son action est validée par un utilisateur plus experimenté
+    * Les actions des utilisateurs sont enregistrés pour permettre aux autres utilisateurs de les confirmer ou non
     
 ## Modélisation
 
