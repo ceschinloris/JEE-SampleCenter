@@ -35,7 +35,7 @@ Une autre utilisation de la plateforme serait en tant qu'API, c'est-à-dire depu
 
 #### Nice-to-have
 
-* Recadrage d'un sample
+* Recadrage temporel d'un sample
 * Fournir une API d'utilisation de SampleCenter
     * Une autre application qui a besoin de sample peut intégrer facilement les données de SampleCenter
     * Les données seraient retournées en JSON plutôt qu'en vues HTML
