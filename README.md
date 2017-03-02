@@ -47,3 +47,7 @@ Une autre utilisation de la plateforme serait en tant qu'API, c'est-à-dire depu
 * système de votes ( + 0 -)
 * Système de privilège aux utilisateurs avec un indice de confiance (pour garantir la bonne structure de l'arborescence)
     * Un utilsateur gagne des points si son action est validée par un utilisateur plus experimenté
+    
+## Modélisation
+
+![modélisation](https://raw.githubusercontent.com/ceschinloris/JEE-SampleCenter/master/schema_modelisation_bdd_sampleCenter.png)
