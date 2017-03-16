@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListSampleStyleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListSampleStyleEmpty}" rendered="#{sampleStyleController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{sampleStyleController.items.rowCount > 0}">
+                    <h:outputText value="#{sampleStyleController.pagination.pageFirstItem + 1}..#{sampleStyleController.pagination.pageLastItem + 1}/#{sampleStyleController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{sampleStyleController.previous}" value="#{bundle.Previous} #{sampleStyleController.pagination.pageSize}" rendered="#{sampleStyleController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{sampleStyleController.next}" value="#{bundle.Next} #{sampleStyleController.pagination.pageSize}" rendered="#{sampleStyleController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{sampleStyleController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSampleStyleTitle_idsampleStyle}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.idsampleStyle}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSampleStyleTitle_fkSample}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkSample}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSampleStyleTitle_fkStyle}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.fkStyle}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{sampleStyleController.prepareView}" value="#{bundle.ListSampleStyleViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sampleStyleController.prepareEdit}" value="#{bundle.ListSampleStyleEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{sampleStyleController.destroy}" value="#{bundle.ListSampleStyleDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{sampleStyleController.prepareCreate}" value="#{bundle.ListSampleStyleCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListSampleStyleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
