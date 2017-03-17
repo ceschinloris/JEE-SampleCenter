@@ -51,3 +51,11 @@ Une autre utilisation de la plateforme serait en tant qu'API, c'est-à-dire depu
 ## Modélisation
 
 ![modélisation](https://raw.githubusercontent.com/ceschinloris/JEE-SampleCenter/master/schema_modelisation_bdd_sampleCenter.png)
+
+# Assurance qualité
+
+## Planification de test
+
+## Spécification de test
+
+### Cas de test
