@@ -11,12 +11,27 @@
     </h:head>
 
     <h:body>
-        <h1>
-            <ui:insert name="title">Default Title</ui:insert>
-        </h1>
-        <p>
-            <ui:insert name="body">Default Body</ui:insert>
-        </p>
+        <div class="header">
+            <div class="container">
+                <h1><a href="/">SampleCenter</a></h1>
+                <div class="header-right">
+                        <input type="search" placeholder="Search for samples" />
+                    
+                        <input type="button" value="Upload" />
+                        <input type="button" value="Login" />
+                    
+                </div>
+                <div style="clear:both"></div>
+            </div>
+        </div>
+        <div class="container">
+            <h1>
+                <ui:insert name="title">Default Title</ui:insert>
+            </h1>
+            <div class="content">
+                <ui:insert name="body">Default Body</ui:insert>
+            </div>
+        </div>
     </h:body>
 
 </html>

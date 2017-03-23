@@ -5,12 +5,14 @@ root {
 body {
     font-family: Arial, Helvetica, sans-serif;
     color: #3a4f54;
-    background-color: #dfecf1;
+    background-color: #faf9fb;
     font-size: small;
+    margin: 0;
+    padding: 0;
 }
 
 a {
-    color: #e33b06;
+    color: #a33bb1;
 }
 
 table {
@@ -79,4 +81,58 @@ tr.jsfcrud_even_row {
     position: absolute;
     left: 50%;
     top: 50%;
+}
+
+.header{
+    background-color: #a33bb1;
+    color:white;
+}
+
+.header h1{
+    margin:0;
+    padding: 10px 0;
+    float: left;
+}
+
+.header h1 a{
+    color:white;
+    text-decoration: none;
+}
+
+.header input{
+    background-color: white;
+    color:#a33bb1;
+    border: none;
+    padding: 5px 10px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.header input[type=button]:hover{
+    background-color: #6a2673;
+    color: white;
+}
+
+.header .header-right{
+    float: right;
+    padding: 10px 0;
+}
+
+.container{
+    width: 980px;
+    margin: auto;
+    padding: 0 10px;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 1000px) and (min-width: 600px)  {
+  .container{
+    width: 580px;
+  }
+}
+
+@media screen and (max-width: 600px)  {
+  .container{
+    width: 100%;
+  }
 }
