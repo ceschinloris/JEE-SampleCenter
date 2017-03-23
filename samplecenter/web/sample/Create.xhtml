@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateSampleTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateSampleLabel_idsample}" for="idsample" />
+                    <h:inputText id="idsample" value="#{sampleController.selected.idsample}" title="#{bundle.CreateSampleTitle_idsample}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_idsample}"/>
+                    <h:outputLabel value="#{bundle.CreateSampleLabel_title}" for="title" />
+                    <h:inputText id="title" value="#{sampleController.selected.title}" title="#{bundle.CreateSampleTitle_title}" />
+                    <h:outputLabel value="#{bundle.CreateSampleLabel_tag}" for="tag" />
+                    <h:inputText id="tag" value="#{sampleController.selected.tag}" title="#{bundle.CreateSampleTitle_tag}" />
+                    <h:outputLabel value="#{bundle.CreateSampleLabel_url}" for="url" />
+                    <h:inputText id="url" value="#{sampleController.selected.url}" title="#{bundle.CreateSampleTitle_url}" />
+                    <h:outputLabel value="#{bundle.CreateSampleLabel_fkFolder}" for="fkFolder" />
+                    <h:selectOneMenu id="fkFolder" value="#{sampleController.selected.fkFolder}" title="#{bundle.CreateSampleTitle_fkFolder}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_fkFolder}">
+                        <f:selectItems value="#{folderController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateSampleLabel_fkAuthor}" for="fkAuthor" />
+                    <h:selectOneMenu id="fkAuthor" value="#{sampleController.selected.fkAuthor}" title="#{bundle.CreateSampleTitle_fkAuthor}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_fkAuthor}">
+                        <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{sampleController.create}" value="#{bundle.CreateSampleSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{sampleController.prepareList}" value="#{bundle.CreateSampleShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateSampleIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
