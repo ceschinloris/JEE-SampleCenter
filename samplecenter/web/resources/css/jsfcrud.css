@@ -125,6 +125,10 @@ tr.jsfcrud_even_row {
     box-sizing: border-box;
 }
 
+audio{
+    width:100%;
+}
+
 @media screen and (max-width: 1000px) and (min-width: 600px)  {
   .container{
     width: 580px;
