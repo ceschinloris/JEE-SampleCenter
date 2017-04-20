@@ -11,9 +11,14 @@
     </h:head>
 
     <h:body>
+        
+        <h:panelGroup id="messagePanel" layout="block">
+            <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+        </h:panelGroup>
+        
         <div class="header">
             <div class="container">
-                <h1><a href="/">SampleCenter</a></h1>
+                <h1><h:link value="SampleCenter" outcome="/index" /></h1>
                 <div class="header-right">
                         <input type="search" placeholder="Search for samples" />
                     
