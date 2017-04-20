@@ -1,10 +1,8 @@
-CREATE DATABASE  IF NOT EXISTS `samplecenter` /*!40100 DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci */;
-USE `samplecenter`;
--- MySQL dump 10.13  Distrib 5.7.12, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 5.7.18, for Linux (x86_64)
 --
 -- Host: localhost    Database: samplecenter
 -- ------------------------------------------------------
--- Server version	5.7.16-log
+-- Server version	5.5.5-10.1.22-MariaDB
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -55,7 +53,7 @@ CREATE TABLE `sample` (
   `idsample` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tag` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `url` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `url` varchar(45) CHARACTER SET utf8 DEFAULT NULL,
   `fk_author` int(11) NOT NULL,
   `fk_folder` int(11) NOT NULL,
   PRIMARY KEY (`idsample`),
@@ -170,4 +168,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2017-04-06 16:18:45
+-- Dump completed on 2017-04-20 16:07:20
