@@ -50,7 +50,7 @@ public class Sample implements Serializable {
     @Size(max = 45)
     @Column(name = "tag")
     private String tag;
-    @Size(max = 45)
+    @Size(max = 255)
     @Column(name = "url")
     private String url;
     @OneToMany(mappedBy = "fkSample")

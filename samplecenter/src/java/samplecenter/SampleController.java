@@ -1,10 +1,16 @@
 package samplecenter;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import samplecenter.util.JsfUtil;
 import samplecenter.util.PaginationHelper;
 
 import java.io.Serializable;
 import java.util.ResourceBundle;
+import java.util.UUID;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -15,6 +21,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.servlet.http.Part;
 
 @Named("sampleController")
 @SessionScoped
@@ -22,6 +29,38 @@ public class SampleController implements Serializable {
 
     private Sample current;
     private DataModel items = null;
+    private Part file;
+    private String folderName =  System.getProperty("catalina.base") ;
+
+    public Part getFile() {
+        return file;
+    }
+
+    public void setFile(Part file) {
+        this.file = file;
+        
+        if (file != null){
+            try {
+                                
+                String file_name = UUID.randomUUID().toString() + "_" + file.getSubmittedFileName();
+                String file_url = folderName + "/samples/" + file_name;
+                
+                
+                current.setUrl(file_name);
+                
+                InputStream is = file.getInputStream();
+                byte[] buffer = new byte[is.available()];
+                is.read(buffer);
+                
+                File targetFile = new File(file_url);
+                OutputStream outStream = new FileOutputStream(targetFile);
+                outStream.write(buffer);
+                
+            } catch (IOException ex) {
+            }
+        }
+    }
+    
     @EJB
     private samplecenter.SampleFacade ejbFacade;
     private PaginationHelper pagination;
@@ -78,7 +117,7 @@ public class SampleController implements Serializable {
     }
 
     public String create() {
-        try {
+        try {    
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SampleCreated"));
             return prepareCreate();

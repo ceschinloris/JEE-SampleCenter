@@ -13,14 +13,18 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
+            <h:form enctype="multipart/form-data">
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateSampleLabel_title}" for="title" />
                     <h:inputText id="title" value="#{sampleController.selected.title}" title="#{bundle.CreateSampleTitle_title}" />
                     <h:outputLabel value="#{bundle.CreateSampleLabel_tag}" for="tag" />
                     <h:inputText id="tag" value="#{sampleController.selected.tag}" title="#{bundle.CreateSampleTitle_tag}" />
-                    <h:outputLabel value="#{bundle.CreateSampleLabel_url}" for="url" />
-                    <h:inputText id="url" value="#{sampleController.selected.url}" title="#{bundle.CreateSampleTitle_url}" />
+                    
+                    
+                    <h:outputLabel value="#{bundle.CreateSampleLabel_file}" for="url" />
+                    <h:inputFile id="file" value="#{sampleController.file}" title="#{bundle.CreateSampleTitle_file}" />
+                    
+                    
                     <h:outputLabel value="#{bundle.CreateSampleLabel_fkFolder}" for="fkFolder" />
                     <h:selectOneMenu id="fkFolder" value="#{sampleController.selected.fkFolder}" title="#{bundle.CreateSampleTitle_fkFolder}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_fkFolder}">
                         <f:selectItems value="#{folderController.itemsAvailableSelectOne}"/>
