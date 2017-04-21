@@ -189,6 +189,11 @@ public class FolderController implements Serializable {
     public Folder getFolder(java.lang.Integer id) {
         return ejbFacade.find(id);
     }
+    
+    public Folder getFolderTree(){
+        Folder rootFolder = getFolder(1);
+        return rootFolder;
+    }
 
     @FacesConverter(forClass = Folder.class)
     public static class FolderControllerConverter implements Converter {

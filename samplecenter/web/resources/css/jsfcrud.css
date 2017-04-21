@@ -99,16 +99,17 @@ tr.jsfcrud_even_row {
     text-decoration: none;
 }
 
-.header input{
+.header input, .header .btn{
     background-color: white;
     color:#a33bb1;
     border: none;
     padding: 5px 10px;
     font-weight: bold;
     margin-left: 20px;
+    text-decoration: none;
 }
 
-.header input[type=button]:hover{
+.header input[type=button]:hover, .header .btn:hover{
     background-color: #6a2673;
     color: white;
 }

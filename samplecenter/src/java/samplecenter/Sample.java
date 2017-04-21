@@ -148,7 +148,7 @@ public class Sample implements Serializable {
 
     @Override
     public String toString() {
-        return "samplecenter.Sample[ idsample=" + idsample + " ]";
+        return title;
     }
     
 }
