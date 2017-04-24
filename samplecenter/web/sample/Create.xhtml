@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -21,14 +22,25 @@
                     <h:inputText id="tag" value="#{sampleController.selected.tag}" title="#{bundle.CreateSampleTitle_tag}" />
                     
                     
-                    <h:outputLabel value="#{bundle.CreateSampleLabel_file}" for="url" />
+                    <h:outputLabel value="#{bundle.CreateSampleLabel_file}" for="file" />
                     <h:inputFile id="file" value="#{sampleController.file}" title="#{bundle.CreateSampleTitle_file}" />
                     
-                    
+                    <!--
                     <h:outputLabel value="#{bundle.CreateSampleLabel_fkFolder}" for="fkFolder" />
                     <h:selectOneMenu id="fkFolder" value="#{sampleController.selected.fkFolder}" title="#{bundle.CreateSampleTitle_fkFolder}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_fkFolder}">
                         <f:selectItems value="#{folderController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
+                    -->
+                    ${sampleController.setUpRootFolder()}
+                    <p:tree value="#{sampleController.root}" var="node" 
+                    selectionMode="single"
+                    selection="#{sampleController.root}">
+                        <p:treeNode>
+                            <h:outputText value="#{node}"/>
+                        </p:treeNode>
+                    </p:tree>
+                    
+                    
                     <h:outputLabel value="#{bundle.CreateSampleLabel_fkAuthor}" for="fkAuthor" />
                     <h:selectOneMenu id="fkAuthor" value="#{sampleController.selected.fkAuthor}" title="#{bundle.CreateSampleTitle_fkAuthor}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_fkAuthor}">
                         <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>

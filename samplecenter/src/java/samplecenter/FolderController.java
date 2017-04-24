@@ -16,10 +16,11 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 
+
 @Named("folderController")
 @SessionScoped
 public class FolderController implements Serializable {
-
+    
     private Folder current;
     private DataModel items = null;
     @EJB
@@ -27,9 +28,24 @@ public class FolderController implements Serializable {
     private PaginationHelper pagination;
     private int selectedItemIndex;
 
+    private Folder root;
+    
     public FolderController() {
     }
 
+    public void setRoot(){
+        root = getFolder(1);
+    }
+    
+    public Folder getRoot(){
+        return root;
+    }
+    
+    public void setUpRootFolder(){
+        root = getFolder(1);
+        root.setUpRoot();
+    }
+    
     public Folder getSelected() {
         if (current == null) {
             current = new Folder();
@@ -227,7 +243,8 @@ public class FolderController implements Serializable {
                 throw new IllegalArgumentException("object " + object + " is of type " + object.getClass().getName() + "; expected type: " + Folder.class.getName());
             }
         }
-
-    }
+    } 
+    
+    
 
 }

@@ -6,7 +6,12 @@
 package samplecenter;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Enumeration;
+import java.util.List;
+import java.util.Vector;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -20,9 +25,11 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import org.primefaces.model.TreeNode;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
+import org.primefaces.model.DefaultTreeNode;
 
 /**
  *
@@ -35,7 +42,7 @@ import javax.xml.bind.annotation.XmlTransient;
     @NamedQuery(name = "Folder.findAll", query = "SELECT f FROM Folder f")
     , @NamedQuery(name = "Folder.findByIdfolder", query = "SELECT f FROM Folder f WHERE f.idfolder = :idfolder")
     , @NamedQuery(name = "Folder.findByName", query = "SELECT f FROM Folder f WHERE f.name = :name")})
-public class Folder implements Serializable {
+public class Folder extends DefaultTreeNode implements Serializable{
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -128,4 +135,18 @@ public class Folder implements Serializable {
         return "samplecenter.Folder[ idfolder=" + idfolder + " ]";
     }
     
+    /*
+        TREENODE IMPLEMENTATION
+    */
+    public void setUpRoot(){
+        super.setParent(fkFolder);
+        List theList = new ArrayList(folderCollection);
+        super.setChildren(theList);
+        
+        super.setData(name);
+        
+        folderCollection.forEach((children) -> {
+            children.setUpRoot();
+        });
+    }
 }

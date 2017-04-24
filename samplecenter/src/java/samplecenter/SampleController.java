@@ -11,6 +11,8 @@ import samplecenter.util.PaginationHelper;
 import java.io.Serializable;
 import java.util.ResourceBundle;
 import java.util.UUID;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.ejb.EJB;
 import javax.inject.Named;
 import javax.enterprise.context.SessionScoped;
@@ -22,6 +24,7 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.Part;
+import jdk.nashorn.internal.runtime.logging.Loggable;
 
 @Named("sampleController")
 @SessionScoped
@@ -65,10 +68,34 @@ public class SampleController implements Serializable {
     private samplecenter.SampleFacade ejbFacade;
     private PaginationHelper pagination;
     private int selectedItemIndex;
+    
+    @EJB
+    private samplecenter.FolderFacade folderFacade;
+    private Folder root;
 
     public SampleController() {
     }
 
+    
+    //------------------
+    public Folder getRoot(){
+        return root;
+    }
+    
+    public void setRoot(Folder f){
+        root = f;
+        current.setFkFolder(f);
+    }
+    
+    
+    public void setUpRootFolder(){
+        root = folderFacade.find(1);
+        root.setUpRoot();
+    }
+    // ____________________
+    
+    
+    
     public Sample getSelected() {
         if (current == null) {
             current = new Sample();
@@ -117,7 +144,7 @@ public class SampleController implements Serializable {
     }
 
     public String create() {
-        try {    
+        try {
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SampleCreated"));
             return prepareCreate();
