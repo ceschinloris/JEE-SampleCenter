@@ -11,7 +11,7 @@
         </ui:define>
         <ui:define name="body">
             
-            <audio controls="controls" src="/samplecenter/faces/resources/#{sampleController.selected.url}"></audio>
+            <audio controls="controls" src="#{sampleController.selected.url}"></audio>
             
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>

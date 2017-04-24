@@ -132,7 +132,7 @@ public class Folder extends DefaultTreeNode implements Serializable{
 
     @Override
     public String toString() {
-        return "samplecenter.Folder[ idfolder=" + idfolder + " ]";
+        return name;
     }
     
     /*

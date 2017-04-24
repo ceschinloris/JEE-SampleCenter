@@ -1,6 +1,7 @@
 package samplecenter;
 
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -43,8 +44,9 @@ public class SampleController implements Serializable {
         this.file = file;
         
         if (file != null){
-            try {
                                 
+            try {
+                
                 String file_name = UUID.randomUUID().toString() + "_" + file.getSubmittedFileName();
                 String file_url = folderName + "/samples/" + file_name;
                 
@@ -56,10 +58,11 @@ public class SampleController implements Serializable {
                 is.read(buffer);
                 
                 File targetFile = new File(file_url);
-                OutputStream outStream = new FileOutputStream(targetFile);
+                OutputStream outStream;
+                outStream = new FileOutputStream(targetFile);
                 outStream.write(buffer);
-                
             } catch (IOException ex) {
+                Logger.getLogger(SampleController.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
     }

@@ -148,15 +148,7 @@ public class Sample implements Serializable {
 
     @Override
     public String toString() {
-        String str  = "";
-        str += " id = " + idsample + "\n";
-        str += " title = " + title + "\n";
-        str += " tag = " + tag + "\n";
-        str += " url = " + url + "\n";
-        str += " fkfolder = " + fkFolder + "\n";
-        str += " fkauthor = " + fkAuthor + "\n";
-        
-        return str;
+        return title;
     }
     
 }
