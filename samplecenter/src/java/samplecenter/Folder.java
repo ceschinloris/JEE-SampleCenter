@@ -145,8 +145,8 @@ public class Folder extends DefaultTreeNode implements Serializable{
         
         super.setData(name);
         
-        folderCollection.forEach((children) -> {
-            children.setUpRoot();
-        });
+        for(Folder child: folderCollection){
+            child.setUpRoot();
+        }
     }
 }
