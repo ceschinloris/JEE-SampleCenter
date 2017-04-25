@@ -10,6 +10,7 @@ import samplecenter.util.JsfUtil;
 import samplecenter.util.PaginationHelper;
 
 import java.io.Serializable;
+import java.util.List;
 import java.util.ResourceBundle;
 import java.util.UUID;
 import java.util.logging.Level;
@@ -35,6 +36,17 @@ public class SampleController implements Serializable {
     private DataModel items = null;
     private Part file;
     private String folderName =  System.getProperty("catalina.base") ;
+    private String searchQuery;
+
+    public String getSearchQuery() {
+        return searchQuery;
+    }
+
+    public void setSearchQuery(String searchQuery) {
+        this.searchQuery = searchQuery;
+    }
+    
+    
 
     public Part getFile() {
         return file;
@@ -257,6 +269,10 @@ public class SampleController implements Serializable {
 
     public Sample getSample(java.lang.Integer id) {
         return ejbFacade.find(id);
+    }
+    
+    public List<Sample> search(String pattern){
+         return ejbFacade.search(pattern);
     }
 
     @FacesConverter(forClass = Sample.class)

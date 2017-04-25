@@ -109,7 +109,15 @@ tr.jsfcrud_even_row {
     text-decoration: none;
 }
 
-.header input[type=button]:hover, .header .btn:hover{
+.btn{
+    cursor: pointer;
+}
+
+.header form input{
+    margin-left: 1px;
+}
+
+.header .btn:hover{
     background-color: #6a2673;
     color: white;
 }
