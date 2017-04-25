@@ -23,8 +23,7 @@
                         <f:facet name="header">
                             <h:outputText value="Title"/>
                         </f:facet>
-                            <h:commandLink action="#{sampleController.prepareView}" value="#{item.title}"/>
-
+                            <h:commandLink action="#{sampleController.prepareView(item)}" value="#{item.title}"/>
                     </h:column>
                     <h:column>
                         <f:facet name="header">

@@ -151,6 +151,11 @@ public class SampleController implements Serializable {
         selectedItemIndex = pagination.getPageFirstItem() + getItems().getRowIndex();
         return "View";
     }
+    
+    public String prepareView(Sample item){
+        current = item;
+        return "View";
+    }
 
     public String prepareCreate() {
         current = new Sample();
