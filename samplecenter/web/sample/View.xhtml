@@ -16,20 +16,16 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                   
-                    <h:outputText value="#{bundle.ViewSampleLabel_tag}"/>
-                    <h:outputText value="#{sampleController.selected.tag}" title="#{bundle.ViewSampleTitle_tag}"/>
-                    <!--
-                    <h:outputText value="#{bundle.ViewSampleLabel_fkFolder}"/>
-                    <h:outputText value="#{sampleController.selected.fkFolder}" title="#{bundle.ViewSampleTitle_fkFolder}"/>
-                    <h:outputText value="#{bundle.ViewSampleLabel_fkAuthor}"/>
-                    <h:outputText value="#{sampleController.selected.fkAuthor}" title="#{bundle.ViewSampleTitle_fkAuthor}"/>
-                    -->
-                </h:panelGrid>
-                
-            </h:form>
+            
+            <p>
+                <strong>Tags: </strong> #{sampleController.selected.tag}
+            </p>
+            <p>
+                <strong>Folder: </strong> #{sampleController.selected.fkFolder.pathString()}
+            </p>
+            <p>
+                <strong>Uploader: </strong> #{sampleController.selected.fkAuthor.username}
+            </p>
         </ui:define>
     </ui:composition>
 

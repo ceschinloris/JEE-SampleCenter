@@ -8,10 +8,8 @@ package samplecenter;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
-import java.util.Enumeration;
 import java.util.List;
-import java.util.Vector;
+import java.util.Stack;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -25,7 +23,6 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import org.primefaces.model.TreeNode;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
 import javax.xml.bind.annotation.XmlTransient;
@@ -60,7 +57,7 @@ public class Folder extends DefaultTreeNode implements Serializable{
     private Folder fkFolder;
     @OneToMany(cascade = CascadeType.ALL, mappedBy = "fkFolder")
     private Collection<Sample> sampleCollection;
-
+    
     public Folder() {
     }
 
@@ -148,5 +145,21 @@ public class Folder extends DefaultTreeNode implements Serializable{
         for(Folder child: folderCollection){
             child.setUpRoot();
         }
+    }
+    
+    public String pathString(){
+        Stack<Folder> path = new Stack<Folder>();
+        Folder folder = this;
+        while(folder != null){
+            path.push(folder);
+            folder = folder.fkFolder;
+        }
+        StringBuilder str = new StringBuilder();
+        while(true){
+            str.append(path.pop().name);
+            if(path.empty()) break;
+            str.append(" > ");
+        }
+        return str.toString();
     }
 }
