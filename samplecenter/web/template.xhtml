@@ -16,11 +16,12 @@
             <div class="container">
                 <h1><h:link value="SampleCenter" outcome="/index" /></h1>
                 <div class="header-right">
-                    
-                    <h:form style="display:inline">
-                        <h:inputText value="#{sampleController.searchQuery}"></h:inputText>
-                        <h:commandButton value="Search" type="submit" action="/sample/Search" styleClass="btn" />
-                    </h:form>
+                    <div style="min-height: 30px;display: inline-block;">
+                        <h:form style="display:inline">
+                            <h:inputText value="#{sampleController.searchQuery}"></h:inputText>
+                            <h:commandButton value="Search" type="submit" action="/sample/Search" styleClass="btn" />
+                        </h:form>
+                    </div>
                         
                     <h:link value="Upload" outcome="/sample/Create" styleClass="btn" />
                     <h:link value="Login" outcome="/user/Create" styleClass="btn" />
