@@ -138,15 +138,28 @@ public class Folder extends DefaultTreeNode implements Serializable{
     /*
         TREENODE IMPLEMENTATION
     */
+    
     public void setUpRoot(){
         super.setParent(fkFolder);
         List theList = new ArrayList(folderCollection);
         super.setChildren(theList);
         
-        super.setData(name);
+        super.setData(this);
         
         folderCollection.forEach((children) -> {
             children.setUpRoot();
+            //childrenSamplesCount += children.childrenSamplesCount;
         });
+    }
+    
+    public int getChildrenTotalSamplesCount()
+    {
+        int childrenSamplesCount = sampleCollection.size();
+        
+        for(Folder children: folderCollection)
+        {
+            childrenSamplesCount += children.getChildrenTotalSamplesCount();
+        }
+        return childrenSamplesCount;
     }
 }
