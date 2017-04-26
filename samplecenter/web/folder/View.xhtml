@@ -14,25 +14,45 @@
         </ui:define>
         <ui:define name="body">
             
-            <h:form>
-                <h2>
-                    <c:forEach items="#{folderController.selected.getPath()}" var="folder" varStatus="loop">
-                            <h:commandLink
-                                action='#{folderController.prepareView(folder)}'
-                                value="#{folder.name}">
-                            </h:commandLink>
-                        <c:if test="${!loop.last}"> &gt; </c:if>
-                    </c:forEach>
-                </h2>
-            </h:form>
-            
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
+            
             <h:form>
+                <p>
+                    <c:forEach items="#{folderController.selected.getPath()}" var="folder" varStatus="loop">
+                        <h:commandLink
+                            action='#{folderController.prepareView(folder)}'
+                            value="#{folder.name}">
+                        </h:commandLink>
+                        <c:if test="${!loop.last}"> &gt; </c:if>
+                    </c:forEach>
+                </p>
                 
-                <h:commandLink action="#{folderController.prepareCreate}" value="#{bundle.ViewFolderCreateLink}" />
-
+                <ul>
+                    <c:forEach items="#{folderController.selected.folderCollection}" var="folder" varStatus="loop">
+                        <li>
+                        <h:commandLink
+                            action='#{folderController.prepareView(folder)}'
+                            value="#{folder.name}">
+                        </h:commandLink>                            
+                        </li>
+                    </c:forEach>
+                </ul>
+                
+                <c:if test="#{folderController.selected.sampleCollection.size() > 0}">
+                    <ui:include src="../sample/SampleList.xhtml">
+                        <ui:param name="list" value="#{folderController.selected.sampleCollection}"/>
+                        <ui:param name="id" value="sampleList"/>
+                    </ui:include>
+                </c:if>
+                <c:if test="#{folderController.selected.sampleCollection.size() == 0}">
+                    No samples here
+                </c:if>
+                
+                <p>
+                    <h:commandLink action="#{folderController.prepareCreate}" value="#{bundle.ViewFolderCreateLink}" />
+                </p>
             </h:form>
         </ui:define>
     </ui:composition>
