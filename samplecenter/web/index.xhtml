@@ -3,6 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     
@@ -14,6 +16,52 @@
         
         <ui:define name="body">
             
+            <h:form id="mainform" styleClass="jsfcrud_list_form">
+            <!-- Folder list a gauche et items du folder a droite [][   ]-->
+            
+            <!-- Folder tree list -->
+                    ${sampleController.setUpRootFolder()}
+                    <p:tree value="#{sampleController.root}" var="node" 
+                    selectionMode="single"
+                    selection="#{sampleController.selectedFolder}"
+                    class="col-md-6">
+                        <p:ajax event="select" update=":mainform:sampleList"/>
+                        <p:treeNode>
+                            <h:outputText value="#{node.name}"/>
+                            <h:outputText value=" (#{node.getChildrenTotalSamplesCount()})" />
+                        </p:treeNode>
+                    </p:tree>
+
+                <!-- Folder content -->
+                
+                <h:dataTable id="sampleList" class="col-md-6" value="#{sampleController.selectedFolder.sampleCollection}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSampleTitle_title}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.title}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSampleTitle_tag}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tag}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="#{bundle.ListSampleTitle_fkAuthor}"/>
+                        </f:facet>
+                        <h:outputText value="#{item.fkAuthor.username}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="&nbsp;"/>
+                        </f:facet>
+                        <h:commandLink action="#{sampleController.prepareView}" value="#{bundle.ListSampleViewLink}"/>
+                        <h:outputText value=" "/>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
         </ui:define>
         
     </ui:composition>

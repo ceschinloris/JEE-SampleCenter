@@ -134,12 +134,13 @@ public class Folder extends DefaultTreeNode implements Serializable{
     /*
         TREENODE IMPLEMENTATION
     */
+    
     public void setUpRoot(){
         super.setParent(fkFolder);
         List theList = new ArrayList(folderCollection);
         super.setChildren(theList);
         
-        super.setData(name);
+        super.setData(this);
         
         for(Folder child: folderCollection){
             child.setUpRoot();
@@ -172,5 +173,16 @@ public class Folder extends DefaultTreeNode implements Serializable{
             str.append(" > ");
         }
         return str.toString();
+    }
+    
+    public int getChildrenTotalSamplesCount()
+    {
+        int childrenSamplesCount = sampleCollection.size();
+        
+        for(Folder children: folderCollection)
+        {
+            childrenSamplesCount += children.getChildrenTotalSamplesCount();
+        }
+        return childrenSamplesCount;
     }
 }

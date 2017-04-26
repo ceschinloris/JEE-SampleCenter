@@ -27,6 +27,7 @@ import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.Part;
 import jdk.nashorn.internal.runtime.logging.Loggable;
+import org.primefaces.event.NodeSelectEvent;
 
 @Named("sampleController")
 @SessionScoped
@@ -105,9 +106,19 @@ public class SampleController implements Serializable {
     
     public void setUpRootFolder(){
         root = folderFacade.find(1);
+        selectedFolder= root;
         root.setUpRoot();
     }
-    // ____________________
+    
+    private Folder selectedFolder;
+    public void setSelectedFolder(Folder f)
+    {
+        selectedFolder = f;
+    }
+    public Folder getSelectedFolder()
+    {
+        return selectedFolder;
+    }
     
     
     
