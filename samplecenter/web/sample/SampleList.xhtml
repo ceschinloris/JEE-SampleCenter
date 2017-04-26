@@ -44,13 +44,24 @@
                     <script type="text/javascript">
                         const PAUSE = "&#9632;";
                         const PLAY = "&#9654;"
+                        const audio = document.getElementById('preview');
 
                         function preview(name, btn){
-                            var audio = document.getElementById('preview');
+                            // si le son est pas en train d'être joué
                             if(btn.value == PLAY){
+                                // change la source de l'élément audio unique
                                 audio.src = "/samplecenter/faces/samples/" + name;
                                 audio.play();
+                                
+                                // symbole play sur tous les boutons
+                                document.querySelectorAll(".playbtn").forEach(function(b){
+                                    b.value = PLAY;
+                                });
+                                
+                                // symbole pause sur celui là
                                 btn.value = PAUSE;
+                                
+                                // re-symbole play quand la lecture est fini
                                 audio.onpause = function() {
                                     btn.value = PLAY;
                                 };
