@@ -3,36 +3,42 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     
     
                 <ui:composition>
                     <audio id="preview"></audio>
                     
-                    <h:dataTable id="#{id}" value="#{list}" var="item">
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Title"/>
-                            </f:facet>
+                    <c:if test="#{list.size() > 0}">
+                        <h:dataTable value="#{list}" var="item">
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Title"/>
+                                    </f:facet>
 
-                            <h:commandLink action="#{sampleController.prepareView(item)}" value="#{item.title}"/>
+                                    <h:commandLink action="#{sampleController.prepareView(item)}" value="#{item.title}"/>
 
 
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Tags"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tag}"/>
-                        </h:column>
-                        <h:column>
-                            <f:facet name="header">
-                                <h:outputText value="Preview"/>
-                            </f:facet>
-                            <h:button styleClass="btn playbtn" value="&#9654;" onclick="preview('#{item.url}', this);return false;"></h:button>
-                        </h:column>
-                    </h:dataTable>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Tags"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.tag}"/>
+                                </h:column>
+                                <h:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="Preview"/>
+                                    </f:facet>
+                                    <h:button styleClass="btn playbtn" value="&#9654;" onclick="preview('#{item.url}', this);return false;"></h:button>
+                                </h:column>
+                        </h:dataTable>
+                    </c:if>
+                    <c:if test="#{list.size() == 0}">
+                        <h:outputText value="No samples here"></h:outputText>                        
+                    </c:if>
                     
             
                     <script type="text/javascript">

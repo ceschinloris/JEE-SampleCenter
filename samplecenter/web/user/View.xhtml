@@ -19,17 +19,11 @@
             
             <h2>Samples</h2>
                 
-            <c:if test="#{userController.selected.sampleCollection.size() > 0}">
-                <h:form>
+            <h:form>
                 <ui:include src="../sample/SampleList.xhtml">
                     <ui:param name="list" value="#{userController.selected.sampleCollection}"/>
-                    <ui:param name="id" value="sampleList"/>
                 </ui:include>                    
-                </h:form>
-            </c:if>
-            <c:if test="#{folderController.selected.sampleCollection.size() == 0}">
-                This is user has uploaded no samples
-            </c:if>
+            </h:form>
             
         </ui:define>
     </ui:composition>

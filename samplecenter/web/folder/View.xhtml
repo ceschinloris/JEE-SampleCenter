@@ -40,15 +40,9 @@
                     </c:forEach>
                 </ul>
                 
-                <c:if test="#{folderController.selected.sampleCollection.size() > 0}">
-                    <ui:include src="../sample/SampleList.xhtml">
-                        <ui:param name="list" value="#{folderController.selected.sampleCollection}"/>
-                        <ui:param name="id" value="sampleList"/>
-                    </ui:include>
-                </c:if>
-                <c:if test="#{folderController.selected.sampleCollection.size() == 0}">
-                    No samples here
-                </c:if>
+                <ui:include src="../sample/SampleList.xhtml">
+                    <ui:param name="list" value="#{folderController.selected.sampleCollection}"/>
+                </ui:include>
                 
                 <p>
                     <h:commandLink action="#{folderController.prepareCreate}" value="#{bundle.ViewFolderCreateLink}" />

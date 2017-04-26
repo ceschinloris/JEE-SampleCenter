@@ -116,7 +116,7 @@ tr.jsfcrud_even_row {
     cursor: pointer;
 }
 
-.header form input{
+.header form .btn{
     margin-left: 1px;
 }
 

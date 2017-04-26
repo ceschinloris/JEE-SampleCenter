@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     
     
     <ui:composition template="/template.xhtml">
@@ -23,7 +24,7 @@
                     <p:tree value="#{sampleController.root}" var="node" 
                     selectionMode="single"
                     selection="#{sampleController.selectedFolder}">
-                        <p:ajax event="select" update=":mainform:sampleList"/>
+                        <p:ajax event="select" update=":mainform:yolo"/>
                         <p:treeNode>
                             <h:outputText value="#{node.name}"/>
                             <h:outputText value=" (#{node.getChildrenTotalSamplesCount()})" />
@@ -33,10 +34,19 @@
             
             <div id="droite">
                 <!-- Folder content -->
-                <ui:include src="sample/SampleList.xhtml">
-                    <ui:param name="list" value="#{sampleController.selectedFolder.sampleCollection}"/>
-                    <ui:param name="id" value="sampleList"/>
-                </ui:include>
+                <h:panelGroup layout="block" id="yolo">
+                    <h3>
+                        <h:outputText value="Folder "></h:outputText>
+                        <h:commandLink
+                            id="foldertitle"
+                            action='#{folderController.prepareView(sampleController.selectedFolder)}'
+                            value="#{sampleController.selectedFolder.name}">
+                        </h:commandLink>     
+                    </h3>
+                    <ui:include src="sample/SampleList.xhtml">
+                        <ui:param name="list" value="#{sampleController.selectedFolder.sampleCollection}"/>
+                    </ui:include>                    
+                </h:panelGroup>
             </div>
                 
                 
