@@ -11,12 +11,12 @@
     <ui:composition template="/template.xhtml">
         
         <ui:define name="title">
-            <h:outputText value="Samples"></h:outputText>
+            <h:outputText value="Sample Tree"></h:outputText>
         </ui:define>
         
         <ui:define name="body">
             
-            <h:form id="mainform" styleClass="jsfcrud_list_form">
+            <h:form id="mainform">
             <!-- Folder list a gauche et items du folder a droite [][   ]-->
             
             <!-- Folder tree list -->
@@ -34,33 +34,12 @@
 
                 <!-- Folder content -->
                 
-                <h:dataTable id="sampleList" class="col-md-6" value="#{sampleController.selectedFolder.sampleCollection}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSampleTitle_title}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.title}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSampleTitle_tag}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.tag}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="#{bundle.ListSampleTitle_fkAuthor}"/>
-                        </f:facet>
-                        <h:outputText value="#{item.fkAuthor.username}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="&nbsp;"/>
-                        </f:facet>
-                        <h:commandLink action="#{sampleController.prepareView}" value="#{bundle.ListSampleViewLink}"/>
-                        <h:outputText value=" "/>
-                    </h:column>
-                </h:dataTable>
+                
+                <ui:include src="sample/SampleList.xhtml">
+                    <ui:param name="list" value="#{sampleController.selectedFolder.sampleCollection}"/>
+                    <ui:param name="id" value="sampleList"/>
+                </ui:include>
+                
             </h:form>
         </ui:define>
         

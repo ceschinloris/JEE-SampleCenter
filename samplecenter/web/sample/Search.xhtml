@@ -13,55 +13,13 @@
             <h:outputText value='Search results for "#{sampleController.searchQuery}"'></h:outputText>
         </ui:define>
         <ui:define name="body">  
-
-            <audio id="preview"></audio>
             
             <h:form>
-                <h:dataTable value="#{sampleController.search(sampleController.searchQuery)}" var="item">
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Title"/>
-                        </f:facet>
-                        
-                        <h:commandLink action="#{sampleController.prepareView(item)}" value="#{item.title}"/>
-                        
-                        
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Tags"/>
-                        </f:facet>
-                        <h:outputText value="#{item.tag}"/>
-                    </h:column>
-                    <h:column>
-                        <f:facet name="header">
-                            <h:outputText value="Preview"/>
-                        </f:facet>
-                        <h:button styleClass="btn playbtn" value="&#9654;" onclick="preview('#{item.url}', this);return false;"></h:button>
-                    </h:column>
-                </h:dataTable>
+                <ui:include src="SampleList.xhtml">
+                    <ui:param name="list" value="#{sampleController.search(sampleController.searchQuery)}"/>
+                </ui:include>
             </h:form>
             
-            <script type="text/javascript">
-                const PAUSE = "&#9632;";
-                const PLAY = "&#9654;"
-                
-                function preview(name, btn){
-                    var audio = document.getElementById('preview');
-                    if(btn.value == PLAY){
-                        audio.src = "/samplecenter/faces/samples/" + name;
-                        audio.play();
-                        btn.value = PAUSE;
-                        audio.onpause = function() {
-                            btn.value = PLAY;
-                        };
-                    }
-                    else{
-                        audio.pause();
-                        btn.value = PLAY;
-                    }
-                }
-            </script>          
         </ui:define>
     </ui:composition>
 
