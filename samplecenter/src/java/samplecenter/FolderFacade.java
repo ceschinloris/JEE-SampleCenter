@@ -21,6 +21,8 @@ public class FolderFacade extends AbstractFacade<Folder> {
 
     @Override
     protected EntityManager getEntityManager() {
+        // empêche la mise en cache
+        em.getEntityManagerFactory().getCache().evictAll();
         return em;
     }
 

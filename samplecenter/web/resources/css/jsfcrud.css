@@ -185,6 +185,10 @@ tr:nth-child(odd){
     width: 100%;
 }
 
+.content{
+    margin-bottom: 20px;
+}
+
 @media screen and (max-width: 1000px) and (min-width: 800px){
   .container{
     width: 780px;

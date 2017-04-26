@@ -58,8 +58,8 @@ public class SampleController implements Serializable {
             try {
                 
                 String file_name = UUID.randomUUID().toString() + "_" + file.getSubmittedFileName();
-                String file_url = folderName + "/samples/" + file_name;
-                
+                // String file_url = folderName + "/samples/" + file_name;
+                String file_url = "C:/samples/" + file_name;
                 
                 current.setUrl(file_name);
                 
@@ -285,7 +285,7 @@ public class SampleController implements Serializable {
     }
     
     public List<Sample> search(String pattern){
-         return ejbFacade.search(pattern);
+        return ejbFacade.search(pattern);
     }
 
     @FacesConverter(forClass = Sample.class)

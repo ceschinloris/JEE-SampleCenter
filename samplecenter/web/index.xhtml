@@ -22,8 +22,7 @@
                     ${sampleController.setUpRootFolder()}
                     <p:tree value="#{sampleController.root}" var="node" 
                     selectionMode="single"
-                    selection="#{sampleController.selectedFolder}"
-                    class="col-md-6">
+                    selection="#{sampleController.selectedFolder}">
                         <p:ajax event="select" update=":mainform:sampleList"/>
                         <p:treeNode>
                             <h:outputText value="#{node.name}"/>

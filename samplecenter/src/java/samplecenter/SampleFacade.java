@@ -23,6 +23,8 @@ public class SampleFacade extends AbstractFacade<Sample> {
 
     @Override
     protected EntityManager getEntityManager() {
+        // empêche la mise en cache
+        em.getEntityManagerFactory().getCache().evictAll();
         return em;
     }
 
