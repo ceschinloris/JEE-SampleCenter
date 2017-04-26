@@ -8,34 +8,30 @@
       xmlns:p="http://primefaces.org/ui">
 
    <ui:composition template="/template.xhtml">
+                
         <ui:define name="title">
-            <h:outputText value="#{bundle.ViewFolderTitle}"></h:outputText>
+            <h:outputText value="Folder #{folderController.selected.name}"></h:outputText>
         </ui:define>
         <ui:define name="body">
+            
+            <h:form>
+                <h2>
+                    <c:forEach items="#{folderController.selected.getPath()}" var="folder" varStatus="loop">
+                            <h:commandLink
+                                action='#{folderController.prepareView(folder)}'
+                                value="#{folder.name}">
+                            </h:commandLink>
+                        <c:if test="${!loop.last}"> &gt; </c:if>
+                    </c:forEach>
+                </h2>
+            </h:form>
+            
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
             <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewFolderLabel_idfolder}"/>
-                    <h:outputText value="#{folderController.selected.idfolder}" title="#{bundle.ViewFolderTitle_idfolder}"/>
-                    <h:outputText value="#{bundle.ViewFolderLabel_name}"/>
-                    <h:outputText value="#{folderController.selected.name}" title="#{bundle.ViewFolderTitle_name}"/>
-                    <h:outputText value="#{bundle.ViewFolderLabel_fkFolder}"/>
-                    <h:outputText value="#{folderController.selected.fkFolder}" title="#{bundle.ViewFolderTitle_fkFolder}"/>
-                </h:panelGrid>                               
-                <br />
-                <h:commandLink action="#{folderController.destroyAndView}" value="#{bundle.ViewFolderDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewFolderEditLink}"/>
-                <br />
+                
                 <h:commandLink action="#{folderController.prepareCreate}" value="#{bundle.ViewFolderCreateLink}" />
-                <br />
-                <h:commandLink action="#{folderController.prepareList}" value="#{bundle.ViewFolderShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewFolderIndexLink}"/>
 
             </h:form>
         </ui:define>

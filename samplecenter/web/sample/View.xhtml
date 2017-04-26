@@ -3,6 +3,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 
     <ui:composition template="/template.xhtml">
@@ -13,19 +14,32 @@
             
             <audio controls="controls" src="/samplecenter/samples/#{sampleController.selected.url}"></audio>
             
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            
-            <p>
-                <strong>Tags: </strong> #{sampleController.selected.tag}
-            </p>
-            <p>
-                <strong>Folder: </strong> #{sampleController.selected.fkFolder.pathString()}
-            </p>
-            <p>
-                <strong>Uploader: </strong> #{sampleController.selected.fkAuthor.username}
-            </p>
+            <h:form>
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+
+                <p>
+                    <strong>Tags: </strong> #{sampleController.selected.tag}
+                </p>
+                <p>
+                    <strong>Uploader: </strong> 
+                    <h:commandLink
+                        action='#{userController.prepareView(sampleController.selected.fkAuthor)}'
+                        value="#{sampleController.selected.fkAuthor.username}">
+                    </h:commandLink>
+                </p>
+                <p>
+                    <strong>Folder: </strong> 
+                    <c:forEach items="#{sampleController.selected.fkFolder.getPath()}" var="folder" varStatus="loop">
+                        <h:commandLink
+                            action='#{folderController.prepareView(folder)}'
+                            value="#{folder.name}">
+                        </h:commandLink>
+                        <c:if test="${!loop.last}"> &gt; </c:if>
+                    </c:forEach>
+                </p>
+            </h:form>
         </ui:define>
     </ui:composition>
 

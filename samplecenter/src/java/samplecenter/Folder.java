@@ -9,7 +9,6 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
-import java.util.Stack;
 import javax.persistence.Basic;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -147,17 +146,29 @@ public class Folder extends DefaultTreeNode implements Serializable{
         }
     }
     
-    public String pathString(){
-        Stack<Folder> path = new Stack<Folder>();
+    
+    
+
+    public List<Folder> getPath(){
+        List<Folder> path = new ArrayList<>();
+        
         Folder folder = this;
         while(folder != null){
-            path.push(folder);
+            path.add(0, folder);
             folder = folder.fkFolder;
         }
+        
+        return path;
+    }
+    
+    public String pathString(){
+        List<Folder> path = getPath();
         StringBuilder str = new StringBuilder();
+        int i = 0;
         while(true){
-            str.append(path.pop().name);
-            if(path.empty()) break;
+            str.append(path.get(i));
+            i++;
+            if(i == path.size()) break;
             str.append(" > ");
         }
         return str.toString();

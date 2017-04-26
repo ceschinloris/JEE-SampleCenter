@@ -71,6 +71,11 @@ public class UserController implements Serializable {
         return "View";
     }
 
+    public String prepareView(User u) {
+        current = u;
+        return "/user/View";
+    }
+
     public String prepareCreate() {
         current = new User();
         selectedItemIndex = -1;
