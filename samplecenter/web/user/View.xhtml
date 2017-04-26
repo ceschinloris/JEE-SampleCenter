@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -15,6 +16,21 @@
             </h:panelGroup>
             
             <img src="#{userController.selected.avatarUrl}" alt="" />
+            
+            <h2>Samples</h2>
+                
+            <c:if test="#{userController.selected.sampleCollection.size() > 0}">
+                <h:form>
+                <ui:include src="../sample/SampleList.xhtml">
+                    <ui:param name="list" value="#{userController.selected.sampleCollection}"/>
+                    <ui:param name="id" value="sampleList"/>
+                </ui:include>                    
+                </h:form>
+            </c:if>
+            <c:if test="#{folderController.selected.sampleCollection.size() == 0}">
+                This is user has uploaded no samples
+            </c:if>
+            
         </ui:define>
     </ui:composition>
 
