@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    
+    
+    
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value='Search results for "#{sampleController.searchQuery}"'></h:outputText>
+        </ui:define>
+        <ui:define name="body">  
+
+            <audio id="preview"></audio>
+            
+            <h:form>
+                <h:dataTable value="#{sampleController.search(sampleController.searchQuery)}" var="item">
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Title"/>
+                        </f:facet>
+                            <h:commandLink action="#{sampleController.prepareView(item)}" value="#{item.title}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Tags"/>
+                        </f:facet>
+                        <h:outputText value="#{item.tag}"/>
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header">
+                            <h:outputText value="Preview"/>
+                        </f:facet>
+                        <h:button styleClass="btn playbtn" value="&#9654;" onclick="preview('#{item.url}', this);return false;"></h:button>
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            
+            <script type="text/javascript">
+                const PAUSE = "&#9632;";
+                const PLAY = "&#9654;"
+                
+                function preview(name, btn){
+                    var audio = document.getElementById('preview');
+                    if(btn.value == PLAY){
+                        audio.src = "/samplecenter/faces/samples/" + name;
+                        audio.play();
+                        btn.value = PAUSE;
+                        audio.onpause = function() {
+                            btn.value = PLAY;
+                        };
+                    }
+                    else{
+                        audio.pause();
+                        btn.value = PLAY;
+                    }
+                }
+            </script>          
+        </ui:define>
+    </ui:composition>
+
+</html>

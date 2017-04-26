@@ -5,9 +5,11 @@
  */
 package samplecenter;
 
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 
 /**
  *
@@ -26,6 +28,11 @@ public class SampleFacade extends AbstractFacade<Sample> {
 
     public SampleFacade() {
         super(Sample.class);
+    }
+
+    public List<Sample> search(String title) {
+        Query query = em.createNamedQuery("Sample.search").setParameter("title", title);
+        return (List<Sample>) query.getResultList();
     }
     
 }

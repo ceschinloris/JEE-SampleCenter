@@ -99,17 +99,28 @@ tr.jsfcrud_even_row {
     text-decoration: none;
 }
 
-.header input, .header .btn{
+.header input, .btn{
     background-color: white;
     color:#a33bb1;
     border: none;
     padding: 5px 10px;
     font-weight: bold;
-    margin-left: 20px;
     text-decoration: none;
 }
 
-.header input[type=button]:hover, .header .btn:hover{
+.header .btn{
+    margin-left: 20px;
+}
+
+.btn{
+    cursor: pointer;
+}
+
+.header form input{
+    margin-left: 1px;
+}
+
+.header .btn:hover{
     background-color: #6a2673;
     color: white;
 }
@@ -126,8 +137,37 @@ tr.jsfcrud_even_row {
     box-sizing: border-box;
 }
 
+.playbtn{
+    width:30px;
+    height: 30px;
+    background-color: transparent;
+}
+
 audio{
     width:100%;
+}
+
+table{
+    width:100%;
+}
+thead tr th{
+    text-align: left;
+    background-color: #6a2673;
+    color:white;
+    padding:5px;
+}
+
+thead tr th, tbody tr td{
+    padding:5px;
+}
+
+tbody tr td:nth-child(3){
+    padding:0;
+    /*text-align: right;*/
+}
+
+tr:nth-child(odd){
+    background-color: #f3f2f7;
 }
 
 @media screen and (max-width: 1000px) and (min-width: 600px)  {

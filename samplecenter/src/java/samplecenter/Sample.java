@@ -35,7 +35,9 @@ import javax.xml.bind.annotation.XmlTransient;
     , @NamedQuery(name = "Sample.findByIdsample", query = "SELECT s FROM Sample s WHERE s.idsample = :idsample")
     , @NamedQuery(name = "Sample.findByTitle", query = "SELECT s FROM Sample s WHERE s.title = :title")
     , @NamedQuery(name = "Sample.findByTag", query = "SELECT s FROM Sample s WHERE s.tag = :tag")
-    , @NamedQuery(name = "Sample.findByUrl", query = "SELECT s FROM Sample s WHERE s.url = :url")})
+    , @NamedQuery(name = "Sample.findByUrl", query = "SELECT s FROM Sample s WHERE s.url = :url")
+    , @NamedQuery(name = "Sample.search", query = "SELECT s FROM Sample s WHERE locate(:title, s.title) > 0")
+})
 public class Sample implements Serializable {
 
     private static final long serialVersionUID = 1L;
