@@ -32,8 +32,8 @@ public class SampleFacade extends AbstractFacade<Sample> {
         super(Sample.class);
     }
 
-    public List<Sample> search(String title) {
-        Query query = em.createNamedQuery("Sample.search").setParameter("title", title);
+    public List<Sample> search(String pattern) {
+        Query query = em.createNamedQuery("Sample.search").setParameter("pattern", pattern);
         return (List<Sample>) query.getResultList();
     }
     
