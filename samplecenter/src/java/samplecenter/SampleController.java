@@ -1,7 +1,6 @@
 package samplecenter;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -26,8 +25,6 @@ import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
 import javax.servlet.http.Part;
-import jdk.nashorn.internal.runtime.logging.Loggable;
-import org.primefaces.event.NodeSelectEvent;
 
 @Named("sampleController")
 @SessionScoped
@@ -165,7 +162,7 @@ public class SampleController implements Serializable {
     
     public String prepareView(Sample item){
         current = item;
-        return "View";
+        return "/sample/View";
     }
 
     public String prepareCreate() {

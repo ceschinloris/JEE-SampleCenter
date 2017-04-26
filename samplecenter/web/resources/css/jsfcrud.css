@@ -170,7 +170,28 @@ tr:nth-child(odd){
     background-color: #f3f2f7;
 }
 
-@media screen and (max-width: 1000px) and (min-width: 600px)  {
+
+.ui-widget-content{
+    border:none;
+    background:transparent;
+}
+
+#mainform{
+    display: -webkit-flex;
+    display: flex;
+}
+
+#mainform #droite{
+    width: 100%;
+}
+
+@media screen and (max-width: 1000px) and (min-width: 800px){
+  .container{
+    width: 780px;
+  }
+}
+
+@media screen and (max-width: 800px) and (min-width: 600px)  {
   .container{
     width: 580px;
   }
@@ -179,5 +200,8 @@ tr:nth-child(odd){
 @media screen and (max-width: 600px)  {
   .container{
     width: 100%;
+  }
+  #mainform{
+      flex-direction: column;
   }
 }

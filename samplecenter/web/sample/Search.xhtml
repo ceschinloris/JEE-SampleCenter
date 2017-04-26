@@ -17,6 +17,7 @@
             <h:form>
                 <ui:include src="SampleList.xhtml">
                     <ui:param name="list" value="#{sampleController.search(sampleController.searchQuery)}"/>
+                    <ui:param name="id" value="searchResult"/>
                 </ui:include>
             </h:form>
             
