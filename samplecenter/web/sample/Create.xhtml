@@ -17,24 +17,23 @@
             <h:form enctype="multipart/form-data">
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateSampleLabel_title}" for="title" />
-                    <h:inputText id="title" value="#{sampleController.selected.title}" title="#{bundle.CreateSampleTitle_title}" />
+                    <h:inputText id="title" value="#{sampleController.selected.title}" title="#{bundle.CreateSampleTitle_title}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_title}" />
                     <h:outputLabel value="#{bundle.CreateSampleLabel_tag}" for="tag" />
                     <h:inputText id="tag" value="#{sampleController.selected.tag}" title="#{bundle.CreateSampleTitle_tag}" />
                     
                     
                     <h:outputLabel value="#{bundle.CreateSampleLabel_file}" for="file" />
-                    <h:inputFile id="file" value="#{sampleController.file}" title="#{bundle.CreateSampleTitle_file}" />
+                    <h:inputFile id="file" value="#{sampleController.file}" title="#{bundle.CreateSampleTitle_file}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_file}">
+                        <f:validator validatorId="fileValidator"/>
+                    </h:inputFile>
                     
-                    <!--
-                    <h:outputLabel value="#{bundle.CreateSampleLabel_fkFolder}" for="fkFolder" />
-                    <h:selectOneMenu id="fkFolder" value="#{sampleController.selected.fkFolder}" title="#{bundle.CreateSampleTitle_fkFolder}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_fkFolder}">
-                        <f:selectItems value="#{folderController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    -->
+                    
                     ${sampleController.setUpRootFolder()}
                     <p:tree value="#{sampleController.root}" var="node" 
                     selectionMode="single"
-                    selection="#{sampleController.root}">
+                    selection="#{sampleController.root}"
+                    required="true" 
+                    requiredMessage="#{bundle.CreateSampleRequiredMessage_fkFolder}">
                         <p:treeNode>
                             <h:outputText value="#{node.name}"/>
                         </p:treeNode>
