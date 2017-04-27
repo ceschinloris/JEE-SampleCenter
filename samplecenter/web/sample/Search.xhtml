@@ -14,7 +14,7 @@
         </ui:define>
         <ui:define name="body">  
             <p>
-                <h:outputText value="#{sampleController.searchQueryCount} results"></h:outputText>
+                <h:outputText id="resultcount" value="#{sampleController.searchQueryCount} results"></h:outputText>
             </p>
             <h:form>
                 <ui:include src="SampleList.xhtml">
