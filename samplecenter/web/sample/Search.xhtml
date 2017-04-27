@@ -31,7 +31,7 @@
                     <h:commandButton styleClass="btn"
                                      action="#{sampleController.incSearchPage(1)}"
                                      value="Next page"
-                                     rendered="#{sampleController.searchQueryCount > (sampleController.searchPage-1)*10}"></h:commandButton>
+                                     rendered="#{sampleController.searchQueryCount > (sampleController.searchPage+1)*10}"></h:commandButton>
                 </p>
             </h:form>
         </ui:define>
