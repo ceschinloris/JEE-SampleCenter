@@ -18,6 +18,7 @@
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
+                <a href="/samplecenter/samples/#{sampleController.selected.url}" class="btn" download="#{sampleController.selected.title}">Download</a>
                 <button class="btn" onclick="copyUrl();return false;">Copy URL to clipboard</button>
                 <span id="message"></span>
                 <p>
