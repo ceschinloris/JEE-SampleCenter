@@ -12,13 +12,14 @@
         </ui:define>
         <ui:define name="body">
             
-            <audio controls="controls" src="/samplecenter/samples/#{sampleController.selected.url}"></audio>
+            <audio id="audio" controls="controls" src="/samplecenter/samples/#{sampleController.selected.url}"></audio>
             
             <h:form>
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
-
+                <button class="btn" onclick="copyUrl();return false;">Copy URL to clipboard</button>
+                <span id="message"></span>
                 <p>
                     <strong>Tags: </strong> #{sampleController.selected.tag}
                 </p>
@@ -40,6 +41,23 @@
                     </c:forEach>
                 </p>
             </h:form>
+            
+            <script type="text/javascript">
+                function copyUrl(){
+                    /*
+                     * Thanks to http://stackoverflow.com/a/30810322
+                     */
+                    var textArea = document.createElement("textarea");
+                    textArea.value = document.getElementById("audio").src;
+                    document.body.appendChild(textArea);
+                    textArea.select();
+                    if(document.execCommand('copy')){
+                        document.getElementById("message").innerHTML = "<small><i>Sample URL copied in your clipboard!</i></small>";
+                    }
+                    document.body.removeChild(textArea);
+                }
+            </script>
+            
         </ui:define>
     </ui:composition>
 

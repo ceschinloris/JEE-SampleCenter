@@ -112,17 +112,17 @@ tr.jsfcrud_even_row {
     margin-left: 20px;
 }
 
+.btn:hover{
+    background-color: #6a2673;
+    color: white;
+}
+
 .btn{
     cursor: pointer;
 }
 
 .header form .btn{
     margin-left: 1px;
-}
-
-.header .btn:hover{
-    background-color: #6a2673;
-    color: white;
 }
 
 .header .header-right{
