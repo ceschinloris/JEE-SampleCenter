@@ -13,13 +13,27 @@
             <h:outputText value='Search results for "#{sampleController.searchQuery}"'></h:outputText>
         </ui:define>
         <ui:define name="body">  
-            
+            <p>
+                <h:outputText value="#{sampleController.searchQueryCount} results"></h:outputText>
+            </p>
             <h:form>
                 <ui:include src="SampleList.xhtml">
                     <ui:param name="list" value="#{sampleController.search(sampleController.searchQuery)}"/>
                 </ui:include>
+                <p>
+                    <h:outputText value="Page #{sampleController.searchPage+1}"></h:outputText>
+                </p>
+                <p>
+                    <h:commandButton styleClass="btn"
+                                     action="#{sampleController.incSearchPage(-1)}"
+                                     value="Previous page"
+                                     rendered="#{sampleController.searchPage > 0}"></h:commandButton>
+                    <h:commandButton styleClass="btn"
+                                     action="#{sampleController.incSearchPage(1)}"
+                                     value="Next page"
+                                     rendered="#{sampleController.searchQueryCount > (sampleController.searchPage-1)*10}"></h:commandButton>
+                </p>
             </h:form>
-            
         </ui:define>
     </ui:composition>
 

@@ -32,9 +32,16 @@ public class SampleFacade extends AbstractFacade<Sample> {
         super(Sample.class);
     }
 
-    public List<Sample> search(String pattern) {
+    public List<Sample> search(String pattern, int searchStart, int searchMax) {
         Query query = em.createNamedQuery("Sample.search").setParameter("pattern", pattern);
+        query.setFirstResult(searchStart);
+        query.setMaxResults(searchMax);
         return (List<Sample>) query.getResultList();
+    }
+    
+    public int countSearch(String pattern){
+        Query countQuery = em.createNamedQuery("Sample.countSearch").setParameter("pattern", pattern);
+        return ((Number) countQuery.getSingleResult()).intValue();
     }
     
 }

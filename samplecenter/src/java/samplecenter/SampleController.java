@@ -24,6 +24,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.persistence.Query;
 import javax.servlet.http.Part;
 
 @Named("sampleController")
@@ -34,17 +35,11 @@ public class SampleController implements Serializable {
     private DataModel items = null;
     private Part file;
     private String folderName =  System.getProperty("catalina.base") ;
+    
     private String searchQuery;
-
-    public String getSearchQuery() {
-        return searchQuery;
-    }
-
-    public void setSearchQuery(String searchQuery) {
-        this.searchQuery = searchQuery;
-    }
-    
-    
+    private int searchPage;   
+    private int searchQueryCount;   
+    private int yolo;
 
     public Part getFile() {
         return file;
@@ -80,6 +75,7 @@ public class SampleController implements Serializable {
     @EJB
     private samplecenter.SampleFacade ejbFacade;
     private PaginationHelper pagination;
+    private PaginationHelper searchPagination;
     private int selectedItemIndex;
     
     @EJB
@@ -284,10 +280,37 @@ public class SampleController implements Serializable {
         return ejbFacade.find(id);
     }
     
-    public List<Sample> search(String pattern){
-        return ejbFacade.search(pattern);
+    public String getSearchQuery() {
+        return searchQuery;
     }
 
+    public void setSearchQuery(String pattern) {
+        this.searchQuery = pattern;
+        this.searchQueryCount = ejbFacade.countSearch(pattern);
+        this.searchPage = 0;
+    } 
+    
+    public int getSearchQueryCount(){
+        return searchQueryCount;
+    }
+    
+    public void setSearchQueryCount(int v){
+        searchQueryCount = v;
+    }
+    
+    public void incSearchPage(int direction){
+        searchPage += direction;
+    }
+    
+    public int getSearchPage(){
+        return searchPage;
+    }
+    
+    public List<Sample> search(String pattern){
+        int max = 10;
+        return ejbFacade.search(pattern, searchPage*max, max);
+    }
+    
     @FacesConverter(forClass = Sample.class)
     public static class SampleControllerConverter implements Converter {
 
