@@ -57,7 +57,7 @@ public class SearchTest {
         Thread.sleep(1000);
         driver.findElement(By.name("j_idt11:j_idt12")).click();
         Thread.sleep(1000);
-        assertEquals("0 results", driver.findElement(By.id("resultcount")).getText());
+        assertEquals("1 results", driver.findElement(By.id("resultcount")).getText());
         
     }
 }
