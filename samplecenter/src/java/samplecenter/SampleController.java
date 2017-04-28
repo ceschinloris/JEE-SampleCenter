@@ -34,7 +34,7 @@ public class SampleController implements Serializable {
     private Sample current;
     private DataModel items = null;
     private Part file;
-    private String folderName =  System.getProperty("catalina.base") ;
+    private String baseSampleFolder =  "C:";
     
     private String searchQuery;
     private int searchPage;   
@@ -53,7 +53,7 @@ public class SampleController implements Serializable {
                 
                 String file_name = UUID.randomUUID().toString() + "_" + file.getSubmittedFileName();
                 // String file_url = folderName + "/samples/" + file_name;
-                String file_url = "C:/samples/" + file_name;
+                String file_url = baseSampleFolder + "/samples/" + file_name;
                 
                 current.setUrl(file_name);
                 
@@ -163,15 +163,14 @@ public class SampleController implements Serializable {
     public String prepareCreate() {
         current = new Sample();
         selectedItemIndex = -1;
-        return "Create";
+        return "VIew";
     }
 
     public String create() {
         try {
-                       
             getFacade().create(current);
             JsfUtil.addSuccessMessage(ResourceBundle.getBundle("/Bundle").getString("SampleCreated"));
-            return prepareCreate();
+            return prepareView(current);
         } catch (Exception e) {
             JsfUtil.addErrorMessage(e, ResourceBundle.getBundle("/Bundle").getString("PersistenceErrorOccured"));
             return null;

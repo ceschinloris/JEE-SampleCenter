@@ -41,10 +41,10 @@ public class UploadTest {
     public static Iterable<Object[]>data(){
         return Arrays.asList(new Object[][]
         {
-            {"test 1", "tag 1", "/home/loris/Desktop/test_samples/acoustic-kick.wav", "samplecenter.User[ iduser=1 ]", "Sample was successfully created."},  // OK
-            {"test 2", "tag 2", "/home/loris/Desktop/test_samples/picture.jpg", "samplecenter.User[ iduser=1 ]", "The file isnt an audio file"},             // WRONG FILE TYPE
-            {"test 3", "tag 3", "", "samplecenter.User[ iduser=1 ]", "The file field is required."},                                                     // NO FILE
-            {"test 4", "tag 4", "/home/loris/Desktop/test_samples/acoustic-kick.wav", "---", "The FkAuthor field is required."},           // NO FKAUTHOR
+            {"test 1", "tag 1", "C:\\meuh.mp3", "loris", "Sample was successfully created."},  // OK
+            {"test 2", "tag 2", "C:\\image.jpg", "loris", "The file isnt an audio file"},             // WRONG FILE TYPE
+            {"test 3", "tag 3", "", "loris", "The file field is required."},                                                     // NO FILE
+            {"test 4", "tag 4", "C:\\meuh.mp3", "---", "The FkAuthor field is required."},           // NO FKAUTHOR
         });
     }
     
@@ -66,9 +66,10 @@ public class UploadTest {
     
     @Before
     public void setUp() {
-    System.setProperty("webdriver.chrome.driver", "/home/loris/Desktop/chromedriver");
-    ChromeOptions options = new ChromeOptions();
-    options.setBinary("/usr/bin/google-chrome-stable");
+    //System.setProperty("webdriver.chrome.driver", "/home/loris/Desktop/chromedriver");
+    System.setProperty("webdriver.chrome.driver", "c:/temp/chromedriver.exe");
+    //ChromeOptions options = new ChromeOptions();
+    //options.setBinary("/usr/bin/google-chrome-stable");
     driver = new ChromeDriver();
     baseUrl = "http://localhost:8080";
     driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -83,15 +84,15 @@ public class UploadTest {
     public void uploadOK(){
         driver.get(baseUrl + "/samplecenter/faces/index.xhtml");
         driver.findElement(By.linkText("Upload")).click();
-        driver.findElement(By.id("j_idt21:title")).clear();
-        driver.findElement(By.id("j_idt21:title")).sendKeys(title);
-        driver.findElement(By.id("j_idt21:tag")).clear();
-        driver.findElement(By.id("j_idt21:tag")).sendKeys(tag);
-        driver.findElement(By.id("j_idt21:file")).clear();
-        driver.findElement(By.id("j_idt21:file")).sendKeys(file);
-        driver.findElement(By.xpath("//li[@id='j_idt21:j_idt27:0']/span/span")).click();
-        driver.findElement(By.xpath("//li[@id='j_idt21:j_idt27:0_1']/span/span[3]")).click();
-        new Select(driver.findElement(By.id("j_idt21:fkAuthor"))).selectByVisibleText(fkAuthor);
+        driver.findElement(By.id("j_idt20:title")).clear();
+        driver.findElement(By.id("j_idt20:title")).sendKeys(title);
+        driver.findElement(By.id("j_idt20:tag")).clear();
+        driver.findElement(By.id("j_idt20:tag")).sendKeys(tag);
+        driver.findElement(By.id("j_idt20:file")).clear();
+        driver.findElement(By.id("j_idt20:file")).sendKeys(file);
+        driver.findElement(By.xpath("//li[@id='j_idt20:j_idt26:0']/span/span")).click();
+        driver.findElement(By.xpath("//li[@id='j_idt20:j_idt26:0_1']/span/span[3]")).click();
+        new Select(driver.findElement(By.id("j_idt20:fkAuthor"))).selectByVisibleText(fkAuthor);
         driver.findElement(By.linkText("Save")).click();
         if( outputString.equalsIgnoreCase(driver.findElement(By.cssSelector("td")).getText()))
         {

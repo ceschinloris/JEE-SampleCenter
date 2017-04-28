@@ -39,14 +39,13 @@
                         </p:treeNode>
                     </p:tree>
                     
-                    
-                    <h:outputLabel value="#{bundle.CreateSampleLabel_fkAuthor}" for="fkAuthor" />
+                    <h:outputLabel value="Author" for="fkAuthor" />
                     <h:selectOneMenu id="fkAuthor" value="#{sampleController.selected.fkAuthor}" title="#{bundle.CreateSampleTitle_fkAuthor}" required="true" requiredMessage="#{bundle.CreateSampleRequiredMessage_fkAuthor}">
                         <f:selectItems value="#{userController.itemsAvailableSelectOne}"/>
                     </h:selectOneMenu>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{sampleController.create}" value="#{bundle.CreateSampleSaveLink}" />
+                <h:commandLink styleClass="btn" action="#{sampleController.create}" value="#{bundle.CreateSampleSaveLink}" />
             </h:form>
         </ui:define>
     </ui:composition>

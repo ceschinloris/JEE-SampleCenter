@@ -169,7 +169,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "samplecenter.User[ iduser=" + iduser + " ]";
+        return username;
     }
     
 }
