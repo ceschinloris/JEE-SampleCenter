@@ -39,7 +39,6 @@ public class SampleController implements Serializable {
     private String searchQuery;
     private int searchPage;   
     private int searchQueryCount;   
-    private int yolo;
 
     public Part getFile() {
         return file;
